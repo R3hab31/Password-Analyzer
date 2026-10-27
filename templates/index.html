@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <title>Password Analyzer</title>
+</head>
+<body>
+    <h1>Password Analyzer</h1>
+    <div class="card">
+    <form action="/analyze" method="POST">
+        <input
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            required>
+        <button type="submit">
+            Analyze
+        </button>
+    </form>
+    {% if strength %}
+    <h2 style="color: {{color}}"> Strength: {{strength}}</h2>
+    {% endif %}
+    {% if sugg %}
+    <h3>Suggestions</h3>
+    <ul>
+        {% for x in sugg %}
+        <li>{{x}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    </div>
+</body>
+</html>
